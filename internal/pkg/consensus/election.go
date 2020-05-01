@@ -197,6 +197,8 @@ func (tm TicketMachine) MakeTicket(ctx context.Context, base block.TipSetKey, ep
 func (tm TicketMachine) IsValidTicket(ctx context.Context, base block.TipSetKey, entry *drand.Entry, newPeriod bool,
 	epoch abi.ChainEpoch, miner address.Address, workerSigner address.Address, ticket block.Ticket) error {
 	randomness, err := tm.ticketVRFRandomness(ctx, base, entry, newPeriod, miner, epoch)
+	fmt.Printf("ticket vrf randomness %x\n", randomness)
+
 	if err != nil {
 		return errors.Wrap(err, "failed to generate ticket randomness")
 	}
