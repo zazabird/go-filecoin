@@ -65,6 +65,8 @@ func NewGRPC(addresses []Address, distKeyCoeff [][]byte, drandGenTime time.Time,
 	if len(results) != 1 {
 		return nil, fmt.Errorf("found %d drand rounds between filecoinGenTime and filecoinGenTime - drandRountDuration, expected 1", len(results))
 	}
+	fmt.Printf("[DRAND GRPC] rd %v, drandGenTime: %v\n", rd, drandGenTime)
+	fmt.Printf("[DRAND GRPC] init rounds: %v\n", results)
 	ffr := results[0]
 
 	return &GRPC{
