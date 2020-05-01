@@ -3,6 +3,7 @@ package consensus
 import (
 	"bytes"
 	"context"
+	"fmt"
 
 	address "github.com/filecoin-project/go-address"
 	"github.com/filecoin-project/sector-storage/ffiwrapper"
@@ -182,6 +183,7 @@ func (tm TicketMachine) MakeTicket(ctx context.Context, base block.TipSetKey, ep
 	if err != nil {
 		return block.Ticket{}, errors.Wrap(err, "failed to generate ticket randomness")
 	}
+	fmt.Printf("ticket vrf randomness %x\n", randomness)
 	vrfProof, err := signer.SignBytes(ctx, randomness, worker)
 	if err != nil {
 		return block.Ticket{}, errors.Wrap(err, "failed to sign election post randomness")
