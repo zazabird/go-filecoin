@@ -393,6 +393,7 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 	for i, round := range rounds {
 		entries[i], err = w.drand.ReadEntry(ctx, round)
 		if err != nil {
+			fmt.Printf("read entry error\n")
 			return nil, err
 		}
 	}
