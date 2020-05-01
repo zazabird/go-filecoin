@@ -397,6 +397,7 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 			return nil, err
 		}
 	}
+	fmt.Printf("out of here fine\n")
 	return entries, nil
 }
 
