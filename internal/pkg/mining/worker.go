@@ -357,6 +357,7 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 	lastTargetEpoch := abi.ChainEpoch(uint64(baseHeight) + nullBlkCount + 1 - consensus.DRANDEpochLookback)
 	fmt.Printf("baseHeight: %d\n", baseHeight)
 	if baseHeight == abi.ChainEpoch(0) {
+		fmt.Printf("here we are in the 0 branch\n")
 		// no latest entry, targetEpoch undefined as its before genesis
 
 		// There should be a first genesis drand round from time before genesis
@@ -365,11 +366,14 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 		endTime := w.clock.StartTimeOfEpoch(lastTargetEpoch + 1)
 		rounds, err = w.drand.RoundsInInterval(ctx, startTime, endTime)
 		if err != nil {
+			fmt.Printf("Rounds in interval failure\n")
 			return nil, err
 		}
 	} else {
+		fmt.Printf("here we are in the non-0 branch\n")
 		latestEntry, err := chain.FindLatestDRAND(ctx, base, w.chainState)
 		if err != nil {
+			fmt.Printf("error where we would expect it in non-0 branch\n")
 			return nil, err
 		}
 
