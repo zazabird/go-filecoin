@@ -167,9 +167,10 @@ func (chn *ChainStateReadWriter) SampleChainRandomness(ctx context.Context, head
 	if err != nil {
 		return nil, err
 	}
-	rnd := crypto.ChainRandomnessSource{Sampler: chain.NewSamplerAtHead(chn.readWriter, genBlk.Ticket, head)}
+	rnd := crypto.ChainRandomnessSource{Sampler: chain.NewRandomnessSamplerAtHead(chn.readWriter, genBlk.Ticket, head)}
 	return rnd.Randomness(ctx, tag, epoch, entropy)
 }
+
 
 // GetActor returns an actor from the latest state on the chain
 func (chn *ChainStateReadWriter) GetActor(ctx context.Context, addr address.Address) (*actor.Actor, error) {
