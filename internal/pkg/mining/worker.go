@@ -366,6 +366,7 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 		fmt.Printf("lastTargetEpoch: %d\n", lastTargetEpoch)
 		startTime := w.drand.StartTimeOfRound(w.drand.FirstFilecoinRound())
 		endTime := w.clock.StartTimeOfEpoch(lastTargetEpoch + 1)
+		fmt.Printf("startTime: %v -- endTime: %v\n", startTime, endTime)
 		rounds, err = w.drand.RoundsInInterval(ctx, startTime, endTime)
 		if err != nil {
 			fmt.Printf("Rounds in interval failure\n")
