@@ -362,6 +362,8 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 
 		// There should be a first genesis drand round from time before genesis
 		// and then we grab everything between this round and genesis time
+		fmt.Printf("first filecoin round: %d\n", w.drand.FirstFilecoinRound())
+		fmt.Printf("lastTargetEpoch: %d\n", lastTargetEpoch)
 		startTime := w.drand.StartTimeOfRound(w.drand.FirstFilecoinRound())
 		endTime := w.clock.StartTimeOfEpoch(lastTargetEpoch + 1)
 		rounds, err = w.drand.RoundsInInterval(ctx, startTime, endTime)
@@ -388,7 +390,7 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 		// first round is round of latestEntry so omit the 0th round
 		rounds = rounds[1:]
 	}
-
+	fmt.Printf("rounds we want to include: %v\n", rounds)
 	entries := make([]*drand.Entry, len(rounds))
 	for i, round := range rounds {
 		entries[i], err = w.drand.ReadEntry(ctx, round)
