@@ -297,7 +297,7 @@ func (c *Expected) validateMining(ctx context.Context,
 		if err != nil {
 			return errors.Wrapf(err, "failed to read sector infos from power table")
 		}
-		valid, err := c.VerifyWinningPoSt(ctx, c.postVerifier, allSectorInfos, electionEntry, blk.Height, blk.PoStProofs, blk.Miner)
+		valid, err := c.VerifyWinningPoSt(ctx, c.postVerifier, allSectorInfos, electionEntry, blk.Height-1, blk.PoStProofs, blk.Miner)
 		if err != nil {
 			return errors.Wrapf(err, "failed verifying winning post")
 		}
