@@ -6,6 +6,7 @@ package mining
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	address "github.com/filecoin-project/go-address"
@@ -354,6 +355,7 @@ func (w *DefaultWorker) drandEntriesForEpoch(ctx context.Context, base block.Tip
 	// Special case genesis
 	var rounds []drand.Round
 	lastTargetEpoch := abi.ChainEpoch(uint64(baseHeight) + nullBlkCount + 1 - consensus.DRANDEpochLookback)
+	fmt.Printf("baseHeight: %d\n", baseHeight)
 	if baseHeight == abi.ChainEpoch(0) {
 		// no latest entry, targetEpoch undefined as its before genesis
 
