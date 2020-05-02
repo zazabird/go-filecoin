@@ -3,6 +3,7 @@ package consensus
 import (
 	"context"
 	"fmt"
+	"github.com/minio/sha256-simd"
 	"time"
 
 	address "github.com/filecoin-project/go-address"
@@ -288,7 +289,7 @@ func (c *Expected) validateMining(ctx context.Context,
 		if err != nil {
 			return errors.Wrap(err, "failed to read power table")
 		}
-		electionVRFDigest := blk.ElectionProof.VRFProof.Digest()
+		electionVRFDigest := sha256.Sum256(blk.ElectionProof.VRFProof)
 		wins := c.IsWinner(electionVRFDigest[:], minerPower, networkPower)
 		if !wins {
 			return errors.Errorf("Block did not win election")
