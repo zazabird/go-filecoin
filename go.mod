@@ -33,7 +33,7 @@ require (
 	github.com/filecoin-project/specs-actors v0.3.0
 	github.com/filecoin-project/specs-storage v0.0.0-20200427220711-ae5a7f26c65f // indirect
 	github.com/filecoin-project/storage-fsm v0.0.0-20200427182014-01487d5ad3c8
-	github.com/fxamacker/cbor v1.5.0
+	github.com/fxamacker/cbor/v2 v2.2.0
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golangci/golangci-lint v1.21.0
 	github.com/google/go-github v17.0.0+incompatible
