@@ -514,7 +514,7 @@ func (syncer *Syncer) handleNewTipSet(ctx context.Context, ci *block.ChainInfo) 
 	// Try adding the tipsets of the chain to the store, checking for new
 	// heaviest tipsets.
 	for i, ts := range tipsets {
-		fmt.Printf("processing tipset %i, key: %s\n", i, ts.Key())
+		fmt.Printf("processing tipset %d, key: %s\n", i, ts.Key())
 		// TODO: this "i==0" leaks EC specifics into syncer abstraction
 		// for the sake of efficiency, consider plugging up this leak.
 		var wts block.TipSet
